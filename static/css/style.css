@@ -1,34 +1,132 @@
 body {
     font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    -webkit-text-size-adjust: 100%;
+    touch-action: manipulation;
 }
+
 .fade-in {
     animation: fadeIn 0.3s ease-out;
 }
+
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(8px); }
     to { opacity: 1; transform: translateY(0); }
 }
-.table-scroll {
+
+/* Адаптивная прокрутка таблиц на мобильных */
+.table-scroll-mobile {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
     max-height: 400px;
     overflow-y: auto;
 }
-.table-scroll::-webkit-scrollbar {
+
+.table-scroll-mobile::-webkit-scrollbar {
     width: 6px;
+    height: 6px;
 }
-.table-scroll::-webkit-scrollbar-thumb {
+
+.table-scroll-mobile::-webkit-scrollbar-thumb {
     background: #cbd5e1;
     border-radius: 4px;
 }
-.table-scroll::-webkit-scrollbar-track {
+
+.table-scroll-mobile::-webkit-scrollbar-track {
     background: #f1f5f9;
 }
+
+/* Улучшенная прокрутка для мобильных */
+@media (max-width: 640px) {
+    .table-scroll-mobile {
+        max-height: 300px;
+        font-size: 12px;
+    }
+    
+    /* Делаем ячейки компактнее на мобильных */
+    .table-scroll-mobile th,
+    .table-scroll-mobile td {
+        padding: 0.5rem;
+        white-space: nowrap;
+    }
+    
+    /* Уменьшаем шрифты на очень маленьких экранах */
+    body {
+        font-size: 14px;
+    }
+}
+
 .hidden {
     display: none !important;
 }
+
 .animate-spin {
     animation: spin 1s linear infinite;
 }
+
 @keyframes spin {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
+}
+
+/* Оптимизация для мобильных устройств */
+@media (max-width: 640px) {
+    /* Убираем лишние отступы */
+    .max-w-7xl {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+    }
+    
+    /* Делаем кнопки более удобными для пальцев */
+    button {
+        min-height: 44px;
+        min-width: 44px;
+    }
+    
+    /* Увеличиваем области нажатия */
+    .px-2 {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+    
+    /* Адаптация карточек статистики */
+    .grid-cols-2 > div {
+        padding: 0.75rem;
+    }
+}
+
+/* Для очень маленьких экранов */
+@media (max-width: 375px) {
+    body {
+        font-size: 13px;
+    }
+    
+    .text-xl {
+        font-size: 1.25rem;
+    }
+    
+    .text-2xl {
+        font-size: 1.5rem;
+    }
+}
+
+/* Landscape orientation на мобильных */
+@media (max-height: 500px) and (orientation: landscape) {
+    .table-scroll-mobile {
+        max-height: 250px;
+    }
+}
+
+/* Улучшение читаемости на мобильных */
+@media (max-width: 640px) {
+    th, td {
+        line-height: 1.4;
+    }
+    
+    /* Перенос длинных текстов */
+    .truncate-mobile {
+        max-width: 150px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
 }
