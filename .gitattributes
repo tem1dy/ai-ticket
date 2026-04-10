@@ -1,0 +1,2 @@
+backend/models/ticket-classifier/*.bin filter=lfs diff=lfs merge=lfs -text
+backend/models/ticket-classifier/model.safetensors filter=lfs diff=lfs merge=lfs -text
